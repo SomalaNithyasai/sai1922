@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+
+  <style>
+    /* Refined CSS styles */
+body {
+  background-image: url('https://media.istockphoto.com/id/1449892479/photo/auction-concept.webp?b=1&s=170667a&w=0&k=20&c=B3ddvYZ7UX738dpc0lzMEvoz4dWPkMaNGPEPEdN9bT4=');
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    padding: 70px;
+    transform: translate(-50%, -50%);
+    background: rgba(246, 244, 244,0.9);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(229, 236, 10, 0.6);
+    border-radius: 10px;
+}
+
+.forms {
+  max-width: 430px;
+  width: 100%;
+  padding: 30px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(247, 12, 12, 0.1);
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #232836;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form {
+  margin-top: 20px;
+}
+
+.field {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.field input {
+  width: 100%;
+  height: 50px;
+  padding: 0 15px;
+  font-size: 18px;
+  border: 1px solid #d73434;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: #0171d3;
+}
+
+.error-message {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  font-size: 14px;
+  color: #d63031;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #0171d3;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #016dcb;
+}
+
+.form-link {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.form-link a {
+  font-size: 16px;
+  color: #0171d3;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.form-link a:hover {
+  color: #01579b;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="forms" id="loginContainer">
+      <h1>Login</h1>
+      <form id="loginForm" class="form login"> 
+        <div class="field">
+          <input type="text" id="loginUsername" placeholder="Username" required>
+          <span id="loginUsernameError" class="error-message"></span>
+        </div>
+        <div class="field">
+          <input type="password" id="loginPassword" placeholder="Password" required>
+          <span id="loginPasswordError" class="error-message"></span>
+        </div>
+        <button type="submit" class="btn">Login</button>
+      </form>
+      <p>Don't have an account? <a href="#" onclick="showRegistrationForm()">Register here</a>.</p>
+    </div>
+
+    <div class="forms" id="registrationContainer" style="display: none;">
+      <h1>Register</h1>
+      <form id="registrationForm" class="form signup">
+        <div class="field">
+          <input type="text" id="fullName" placeholder="Full Name" required>
+        </div>
+        <div class="field">
+          <input type="email" id="email" placeholder="Email Address" required>
+        </div>
+        <div class="field">
+          <input type="text" id="registerUsername" placeholder="Username" required>
+        </div>
+        <div class="field">
+          <input type="password" id="registerPassword" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn">Register</button>
+      </form>
+      <p>Already have an account? <a href="auctionitem.html" onclick="showLoginForm()">Login here</a>.</p>
+    </div>
+  </div>
+
+  <script>
+    function showRegistrationForm() {
+      document.getElementById("loginContainer").style.display = "none";
+      document.getElementById("registrationContainer").style.display = "block";
+    }
+
+    function showLoginForm() {
+      document.getElementById("registrationContainer").style.display = "none";
+      document.getElementById("loginContainer").style.display = "block";
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault(); 
+
+
+      const username = document.getElementById("loginUsername").value;
+      const password = document.getElementById("loginPassword").value;
+
+      
+      document.getElementById("loginUsernameError").innerText = "";
+      document.getElementById("loginPasswordError").innerText = "";
+
+  
+      if (!username.trim()) {
+        document.getElementById("loginUsernameError").innerText = "Please enter your username";
+        return;
+      }
+      if (!password.trim()) {
+        document.getElementById("loginPasswordError").innerText = "Please enter your password";
+        return;
+      }
+
+      
+      const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+      const user = registeredUsers.find(user => user.username === username && user.password === password);
+      if (user) {
+        
+        window.location.href = "auctionitem.html";
+      } else {
+       
+        alert("Invalid username or password");
+      }
+    });
+
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+      event.preventDefault(); 
+
+      
+      const fullName = document.getElementById("fullName").value;
+      const email = document.getElementById("email").value;
+      const username = document.getElementById("registerUsername").value;
+      const password = document.getElementById("registerPassword").value;
+
+      
+      const user = {
+        fullName,
+        email,
+        username,
+        password
+      };
+
+      const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+
+      
+      const existingUser = registeredUsers.find(user => user.username === username);
+      if (existingUser) {
+        alert("Username already exists. Please choose a different username.");
+        return;
+      }
+
+      
+      registeredUsers.push(user);
+
+      
+      localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+
+      showLoginForm();
+    });
+  </script>
+</body>
+</html>

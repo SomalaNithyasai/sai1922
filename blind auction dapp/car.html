@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Online Car Auction</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+         body{
+  background-image: url('https://t4.ftcdn.net/jpg/01/27/37/57/360_F_127375769_CTPmwsLzsot4Ct3xPugO2gT3wBFdxBtz.jpg');
+  background-repeat: no-repeat;
+    background-size: cover;
+}
+nav {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 5%;
+    background-color: #090a0a;
+}
+
+nav .heading {
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    padding: 8px 15px;
+    border-radius: 10px;
+    transition: 0.2s ease-in;
+}
+
+nav ul li a {
+    color: black;
+    font-size: 30px;
+    font-weight: 500;
+    text-decoration: none;
+    color: white;
+}
+
+nav ul li:hover {
+    background-color: rgb(6, 6, 6);
+}
+
+nav ul li a:hover {
+    color: white;
+}
+
+nav .sideMenuButton {
+    font-size: 35px;
+    font-weight: bolder;
+    cursor: pointer;
+    display: none;
+}
+h1 {
+    font-size: 60px;
+    margin-bottom: 10px;
+    color: rgb(252, 254, 252);
+    color: rgb(43, 235, 14);
+}
+        /* Styles for the car listings */
+        .car-listings {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .car-card {
+            background-color: #ecbcbc;
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+            max-width: 300px;
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 align="center">Welcome to Online Car Auction</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="auctionitem.html">BACK</a></li>
+            <li><a href="bike.html">Bike</a></li>
+
+        </ul>
+    </nav>
+    <section class="car-listings">
+        <div class="car-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRElpdmAGhCylJiE6ZfdI9dcnBohRtby7RCOi-z5zJhKQ&s" alt="Car 1">
+            <h2>Car - 01</h2>
+            <p>Model: 1990</p>
+            <p>
+                Description:
+                Fuel Type:Hybrid
+                Engine:1969 cc
+                Power and Torque:250 bhp & 350 Nm
+                DriveTrain:4WD / AWD
+                Acceleration:7.1 seconds
+                Top Speed:180 kmph
+            </p>
+            <button onclick="placeBid('Car - 01')">Place Bid</button>
+        </div>
+        <div class="car-card">
+            <img src="https://spn-mda.spinny.com/img/vFzh1msBTAq%2BPtLAZ6_Oug/file.JPG?w=500" alt="Car 1">
+            <h2>Car - 02</h2>
+            <p>Model: 2021</p>
+            <p>
+                Description:
+                Fuel Type:Hybrid
+                Engine:1969 cc
+                Power and Torque:250 bhp & 350 Nm
+                DriveTrain:4WD / AWD
+                Acceleration:7.1 seconds
+                Top Speed:180 kmph
+            </p>
+            <button onclick="placeBid('Car - 01')">Place Bid</button>
+        </div>
+        <div class="car-card">
+            <img src="https://d308ljkq6e62o1.cloudfront.net/img/P2Hp70gkQamg01K8SXUU5A/raw/file.jfif" alt="Car 1">
+            <h2>Car - 03</h2>
+            <p>Model: 2020</p>
+            <p>
+                Description:
+                Fuel Type:Hybrid
+                Engine:1969 cc
+                Power and Torque:250 bhp & 350 Nm
+                DriveTrain:4WD / AWD
+                Acceleration:7.1 seconds
+                Top Speed:180 kmph
+            </p>
+            <button onclick="placeBid('Car - 01')">Place Bid</button>
+        </div>
+        <div class="car-card">
+            <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/131131/xc60-exterior-front-view.jpeg?isig=0&q=80" alt="Car 1">
+            <h2>Car - 04</h2>
+            <p>Model: 2011</p>
+            <p>Description:
+                Fuel Type:Hybrid
+                Engine:3000 cc
+                Power and Torque:250 bhp & 350 Nm
+                DriveTrain:4WD / AWD
+                Acceleration:7.1 seconds
+                Top Speed:180 kmph
+            </p>
+            <button onclick="placeBid('Car - 01')">Place Bid</button>
+        </div>
+        <div class="car-card">
+            <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/152681/x5-facelift-exterior-left-front-three-quarter-2.jpeg?isig=0&q=80" alt="Car 1">
+            <h2>Car - 05</h2>
+            <p>Model: 2012</p>
+            <p>
+                Description:
+                Fuel Type:Hybrid
+                Engine:2500 cc
+                Power and Torque:250 bhp & 350 Nm
+                DriveTrain:4WD / AWD
+                Acceleration:7.1 seconds
+                Top Speed:180 kmph
+            </p>
+            <button onclick="placeBid('Car - 01')">Place Bid</button>
+        </div>
+        <div class="car-card">
+            <img src="https://imgd.aeplcdn.com/600x600/cw/ec/24877/Mahindra-Bolero-Plus-80006.jpg?wm=0" alt="Car 1">
+            <h2>Car - 06</h2>
+            <p>Model: 2019</p>
+            <p>
+                Description:
+                Fuel Type:Hybrid
+                Engine:1969 cc
+                Power and Torque:250 bhp & 350 Nm
+                DriveTrain:4WD / AWD
+                Acceleration:7.1 seconds
+                Top Speed:180 kmph
+            </p>
+            <button onclick="placeBid('Car - 01')">Place Bid</button>
+        </div>
+      
+    </section>
+    <script>
+        function placeBid(itemName) {
+            localStorage.setItem('selectedItem', itemName); 
+            window.location.href = 'auctioncode.html';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            font-family: Bold;
+        }
+
+        * {
+            box-sizing: content-box;
+        }
+
+        body {
+            background-image: url('https://i.pinimg.com/736x/3d/98/74/3d98740c30ab24445e0022f11c3265ff.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        input[type=text],
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding: 6px;
+
+            border: 1px solid #f99d9d;
+
+            border-radius: 2px;
+
+            box-sizing: border-box;
+
+            margin-top: 4px;
+
+            margin-bottom: 16px;
+
+            resize: vertical;
+
+        }
+
+        input[type=submit] {
+
+            background-color: #63be0e;
+
+            color: white;
+
+            padding: 12px 20px;
+
+            border: 3px;
+
+            border-radius: 4px;
+
+            cursor: pointer;
+
+        }
+
+        input[type=submit]:hover {
+
+            background-color: #45a049;
+
+        }
+
+        .container {
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            width: 600px;
+
+            padding: 70px;
+
+            transform: translate(-50%, -50%);
+
+            background: rgba(0, 0, 0, .5);
+
+            box-sizing: border-box;
+
+            box-shadow: 0 15px 25px rgba(229, 236, 10, 0.6);
+
+            border-radius: 10px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container" style="background-color: rgba(24, 24, 59, 0.315);">
+
+        <h1 align="center">Registration form</h1>
+
+        <form style="background-image: https://th.bing.com/th/id/OIP.3YD6BYo7QXfw5Y5d_79tGwHaFj?rs=1&pid=ImgDetMain;" onsubmit="return validateForm()">
+
+            <label for="fname">First Name</label>
+
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+            <label for="lname">Last Name</label>
+
+            <input type="text" id="lname" name="lastname" placeholder="Your name">
+
+            <label for="country">Country</label>
+
+            <select id="country" name="country">
+
+                <option value="australia">Australia</option>
+
+                <option value="canada">Canada</option>
+
+                <option value="usa">USA</option>
+
+            </select>
+
+            <fieldset>
+
+                <legend>Gender:</legend>
+
+                <input type="radio" id="male" name="gender" value="male">
+
+                <label for="male">Male</label>
+
+                <input type="radio" id="female" name="gender" value="female">
+
+                <label for="female">Female</label>
+
+            </fieldset>
+
+            <label for="ph.number">Ph.number</label>
+
+            <input type="text" id="phNumber" placeholder="Enter your number"><br><br>
+
+            <label for="Email">Email:</label>
+            <input type="text" id="email" name="email" placeholder="Your Email.." required><br>
+            <input type="submit" value="Submit">
+
+        </form>
+
+    </div>
+
+    <script>
+        function validateForm() {
+            var fname = document.getElementById('fname').value.trim();
+            var lname = document.getElementById('lname').value.trim();
+            var phNumber = document.getElementById('phNumber').value.trim();
+            var email = document.getElementById('email').value.trim();
+
+            if (fname === '' || lname === '' || phNumber === '' || email === '') {
+                alert('Please fill in all fields.');
+                return false;
+            }
+
+            // Assuming email validation function is defined
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+
+            // Redirect to auction page after successful registration
+            window.location.href = 'auctionitem.html';
+
+            return false; // Prevent default form submission
+        }
+
+        function validateEmail(email) {
+            // Email validation logic, you can use a regular expression or any other method
+            // This is a basic example, you may need a more robust validation
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
+    </script>
+
+</body>
+
+</html>

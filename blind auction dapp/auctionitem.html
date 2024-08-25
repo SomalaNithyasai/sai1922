@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Online Art Auction</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{
+  background-image: url('https://png.pngtree.com/background/20231207/original/pngtree-online-law-order-auction-juridical-photo-picture-image_6727066.jpg');
+  background-repeat: no-repeat;
+    background-size: cover;
+}
+
+nav {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 5%;
+    background-color: #090a0a;
+}
+
+nav .heading {
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    padding: 8px 15px;
+    border-radius: 10px;
+    transition: 0.2s ease-in;
+}
+
+nav ul li a {
+    color: black;
+    font-size: 30px;
+    font-weight: 500;
+    text-decoration: none;
+    color: white;
+}
+
+nav ul li:hover {
+    background-color: rgb(21, 210, 27);
+}
+
+nav ul li a:hover {
+    color: white;
+}
+
+nav .Button {
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: right;
+    vertical-align: top;
+    display: flex;
+    align-items: center;
+}
+
+
+nav .Button:hover {
+    background-color: #45a049;
+}
+
+         .art-listings {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+ 
+.art-card {
+    background-color: #efd6d6;
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    max-width: 300px;
+}
+h1 {
+    font-size: 60px;
+    margin-bottom: 10px;
+    color: rgb(252, 254, 252);
+    color: rgb(151, 24, 24);
+}
+ 
+.art-card:hover {
+    transform: translateY(-5px);
+}
+ 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+    </style>
+</head>
+
+<body>
+    <h1 align="center">Blind Online Auction</h1>
+    <nav>
+        <ul>
+            <li><a href="bike.html">Bike</a></li>
+            <li><a href="car.html">Car</a></li>
+
+            <li><button onclick="logout()">Logout</button></li>
+
+        </ul>
+    </nav>
+    <header>
+        <h1 align="center">
+            Welcome to Art Auction
+        </h1>
+    </header>
+    <section class="art-listings"  data-item="Artwork - 01">
+        <div class="art-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUIPhz6hXqQ0ysrAOIXAvc4-EnOFIN2qXuBcd77cG5sg&s" alt="Artwork 1">
+            <h2>Artwork - 01</h2>
+            <p>Artist: Kumar</p>
+            <p>Description:This breathtaking oil painting captures the tranquility of a coastal sunset. The artist skillfully blends warm hues of orange and gold to create a mesmerizing sky that reflects softly on the calm waters below. A lone sailboat drifts peacefully on the horizon, adding a sense of solitude and serenity to the scene.</p>
+            <button onclick="placeBid('Artwork - 01')">Place Bid</button>
+        </div>
+        <div class="art-card"  data-item="Artwork - 02">
+            <img src="https://cdn.magicdecor.in/com/2023/10/28172651/Stylized-Tree-Modern-Artwork-Oil-Painting-Wallpaper-for-Wall.jpg" alt="Artwork 2">
+            <h2>Artwork - 02</h2>
+            <p>Artist: Raj</p>
+            <p>Description: This breathtaking oil painting captures the tranquility of a coastal sunset. The artist skillfully blends warm hues of orange and gold to create a mesmerizing sky that reflects softly on the calm waters below. A lone sailboat drifts peacefully on the horizon, adding a sense of solitude and serenity to the scene.</p>
+            <button onclick="placeBid('Artwork - 02')">Place Bid</button>
+        </div>
+        <div class="art-card"  data-item="Artwork - 03">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq0pTUSQAKD6WhrMOBPFeqbqJGOwA8q33kPV5QQBe9AA&s" alt="Artwork 1">
+            <h2>Artwork - 03</h2>
+            <p>Artist: Nagesh</p>
+            <p>Description: This breathtaking oil painting captures the tranquility of a coastal sunset. The artist skillfully blends warm hues of orange and gold to create a mesmerizing sky that reflects softly on the calm waters below. A lone sailboat drifts peacefully on the horizon, adding a sense of solitude and serenity to the scene.</p>
+            <button onclick="placeBid('Artwork - 01')">Place Bid</button>
+        </div>
+        <div class="art-card"  data-item="Artwork - 04">
+            <img src="https://shelleylifebydesign.co.za/cdn/shop/products/21.THREEDANCERS.22MB.jpg?v=1644585060" alt="Artwork 1">
+            <h2>Artwork - 04</h2>
+            <p>Artist: Nandeeswar</p>
+            <p>Description: This breathtaking oil painting captures the tranquility of a coastal sunset. The artist skillfully blends warm hues of orange and gold to create a mesmerizing sky that reflects softly on the calm waters below. A lone sailboat drifts peacefully on the horizon, adding a sense of solitude and serenity to the scene.</p>
+            <button onclick="placeBid('Artwork - 01')">Place Bid</button>
+        </div>
+        <div class="art-card"  data-item="Artwork - 05">
+            <img src="https://img.artpal.com/116422/52-19-16t.jpg" alt="Artwork 1">
+            <h2>Artwork - 05</h2>
+            <p>Artist: Hari</p>
+            <p>Description: This breathtaking oil painting captures the tranquility of a coastal sunset. The artist skillfully blends warm hues of orange and gold to create a mesmerizing sky that reflects softly on the calm waters below. A lone sailboat drifts peacefully on the horizon, adding a sense of solitude and serenity to the scene.</p>
+            <button onclick="placeBid('Artwork - 01')">Place Bid</button>
+        </div>
+        <div class="art-card"  data-item="Artwork - 06">
+            <img src="https://www.novagraaf.com/sites/default/files/styles/832x468_16x9_/public/2022-05/shutterstock_1936603141.jpg?itok=3wJbVvfs" alt="Artwork 1">
+            <h2>Artwork - 06</h2>
+            <p>Artist: Harshith</p>
+            <p>Description: This breathtaking oil painting captures the tranquility of a coastal sunset. The artist skillfully blends warm hues of orange and gold to create a mesmerizing sky that reflects softly on the calm waters below. A lone sailboat drifts peacefully on the horizon, adding a sense of solitude and serenity to the scene.</p>
+            <button onclick="placeBid('Artwork - 01')">Place Bid</button>
+        </div>
+        <div class="art-card"  data-item="Artwork - 07">
+            <img src="https://www.artlifting.com/cdn/shop/t/51/assets/for-your-business-image.jpg?v=14285151070687416241667834849" alt="Artwork 1">
+            <h2>Artwork - 07</h2>
+            <p>Artist: Abdul</p>
+            <p>Description: This breathtaking oil painting captures the tranquility of a coastal sunset. The artist skillfully blends warm hues of orange and gold to create a mesmerizing sky that reflects softly on the calm waters below. A lone sailboat drifts peacefully on the horizon, adding a sense of solitude and serenity to the scene.</p>
+            <button onclick="placeBid('Artwork - 01')">Place Bid</button>
+        </div>
+        <div class="art-card"  data-item="Artwork - 08">
+            <img src="https://images-cdn.ubuy.co.in/634d09086d9f6623d0744399-hand-painted-animal-oil-painting-3d.jpg" alt="Artwork 1">
+            <h2>Artwork - 08</h2>
+            <p>Artist: Nani</p>
+            <p>Description: This breathtaking oil painting captures the tranquility of a coastal sunset. The artist skillfully blends warm hues of orange and gold to create a mesmerizing sky that reflects softly on the calm waters below. A lone sailboat drifts peacefully on the horizon, adding a sense of solitude and serenity to the scene.</p>
+            <button onclick="placeBid('Artwork - 01')">Place Bid</button>
+        </div>
+        <div class="art-card-1"  data-item="Artwork - 07">
+            <img src="https://img.artpal.com/116422/52-19-16t.jpg" alt="Artwork 1">
+            <h2>Artwork - 07</h2>
+            <p>Artist: Hari-1</p>
+            <p>Description: This breathtaking oil painting captures the tranquility of a coastal sunset. The artist skillfully blends warm hues of orange and gold to create a mesmerizing sky that reflects softly on the calm waters below. A lone sailboat drifts peacefully on the horizon, adding a sense of solitude and serenity to the scene.</p>
+            <button onclick="placeBid('Artwork - 07')">Place Bid</button>
+        </div>
+        <div class="art-card" data-item="Artwork - 09">
+            <img src="https://storage.needpix.com/rsynced_images/painting-1782731_1280.jpg" alt="Artwork 1">
+            <h2>Artwork - 09</h2>
+            <p>Artist: Lokesh</p>
+            <p>Description:This breathtaking oil painting captures the tranquility of a coastal sunset. The artist skillfully blends warm hues of orange and gold to create a mesmerizing sky that reflects softly on the calm waters below. A lone sailboat drifts peacefully on the horizon, adding a sense of solitude and serenity to the scene.</p>
+            <button onclick="placeBid('Artwork - 01')">Place Bid</button>
+        </div>
+    </section>
+    <script>
+        function placeBid(itemName) {
+            localStorage.setItem('selectedItem', itemName); 
+            window.location.href = 'auctioncode.html'; 
+        }
+
+
+
+
+        
+        function logout() {
+  
+    alert("You have been logged out!");
+
+    window.location.href = "index.html";
+}
+
+    </script>
+</body>
+
+</html>

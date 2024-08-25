@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blind Auction App</title>
+<style> body {
+    font-family: Bold;
+    font-size: 35px;
+}
+
+* {
+    box-sizing: content-box;
+}
+
+body {
+    background-image: url('https://t4.ftcdn.net/jpg/01/27/37/57/360_F_127375769_CTPmwsLzsot4Ct3xPugO2gT3wBFdxBtz.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+input[type=number],
+input[type=text] {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #d54242;
+    font-size: 20px;
+    border-radius: 2px;
+    box-sizing: border-box;
+    margin-top: 4px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+button {
+    background-color: #63be0e;
+    color: rgb(15, 13, 13);
+    padding: 12px 20px;
+    border: 3px;
+    border-radius: 4px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#output {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f8f8;
+    border: 1px solid #f01f1f;
+    border-radius: 5px;
+    font-size: 30px;
+}
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    padding: 70px;
+    transform: translate(-50%, -50%);
+    background: rgba(246, 244, 244,0.7);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(220, 98, 21, 0.6);
+    border-radius: 10px;
+}
+</style>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.3.5/dist/web3.min.js"></script>
+    <script type="text/javascript">
+      
+        window.addEventListener('load', async () => {
+            if (typeof window.ethereum !== 'undefined') {
+                window.web3 = new Web3(window.ethereum);
+                await window.ethereum.enable();
+            } else if (typeof window.web3 !== 'undefined') {
+                window.web3 = new Web3(window.web3.currentProvider);
+            } else {
+                console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+            }
+        });
+
+    
+        async function bid() {
+            const contractAddress = '0x8e6DB15Ca14Ee8b98ceEDB9f60F18007301BC9F1'; 
+            const contractAbi = [
+                {
+                
+		"inputs": [],
+		"name": "auctionEnd",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_biddingTime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_revealTime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address payable",
+				"name": "_beneficiary",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "winner",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "highestBid",
+				"type": "uint256"
+			}
+		],
+		"name": "AuctionEnded",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "_blindedBid",
+				"type": "bytes32"
+			}
+		],
+		"name": "bid",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "_values",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "bool[]",
+				"name": "_fake",
+				"type": "bool[]"
+			},
+			{
+				"internalType": "bytes32[]",
+				"name": "_secret",
+				"type": "bytes32[]"
+			}
+		],
+		"name": "reveal",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "beneficiary",
+		"outputs": [
+			{
+				"internalType": "address payable",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "biddingEnd",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "bids",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "blindedBid",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "deposit",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "ended",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "highestBid",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "highestBidder",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "pendingReturns",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "revealEnd",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+      
+            const contractInstance = new web3.eth.Contract(contractAbi, contractAddress);
+
+            const bidAmount = document.getElementById('bidAmount').value;
+            const secret = document.getElementById('secret').value;
+            const productDetails = document.getElementById('productDetails').value; 
+
+            const valueInWei = web3.utils.toWei(bidAmount, 'ether');
+            const deposit = valueInWei * 2; 
+
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                const fromAccount = accounts[0];
+
+              
+                await contractInstance.methods.bid(web3.utils.soliditySha3(secret))
+                    .send({ from: fromAccount, value: deposit.toString() })
+                    .on('transactionHash', (hash) => {
+                        console.log('Transaction Hash:', hash);
+                    })
+                    .on('confirmation', (confirmationNumber, receipt) => {
+                        console.log('Confirmation Number:', confirmationNumber);
+                        console.log('Receipt:', receipt);
+                    })
+                    .on('error', (error) => {
+                        console.error('Error:', error);
+                    });
+
+
+					
+                
+                document.getElementById('output').innerHTML = `
+                    <p>Product Details: ${productDetails}</p>
+                    <p>Bid Amount: ${bidAmount} ETH</p>
+                    <p>Secret: ${secret}</p>
+                    <p>Deposit: ${deposit} wei</p>
+                `;
+            } catch (error) {
+                console.error('Error:', error);
+                
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1 align="center">BID HERE</h1>
+    <p>Enter your bid amount, secret, and product details:</p>
+    <input type="number" id="bidAmount" placeholder="Bid Amount (ETH)" step="0.01"><br>
+    <input type="text" id="secret" placeholder="Username"><br>
+    <input type="text" id="productDetails" placeholder="Product Details"><br> <!-- Add input field for product details -->
+    <button onclick="bid()">Place Bid</button>
+
+    <div id="output"></div> 
+    <div align="center"><a href="auctionitem.html">BACK</a></div>
+    </div>
+</body>
+</html>
